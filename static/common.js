@@ -22,8 +22,10 @@ function page_location(location)
 }
 
 /**
- * 清除分页最后一个链接的 margin-right
+ * 清除最後一個分頁的 margin-right
  */
 $(function (){
 	$('.page_style a').eq($('.page_style a').length - 1).css('margin-right', 0);
 });
+
+
