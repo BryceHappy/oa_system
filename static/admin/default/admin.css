@@ -1,0 +1,124 @@
+@charset "utf-8";
+/**
+ * 后端样式
+ * @author      lensic [mhy]
+ * @link        http://www.lensic.cn/
+ * @copyright   Copyright (c) 2013 - , lensic [mhy].
+ */
+
+body{background-color:#f6f6f6; color:#666; padding:35px 20px 20px;font-size:14px;}
+.td_right{text-align:right; height:50px; padding-right:5px; width:100px;}
+.input_text{border:1px solid #999; background-color:#eee; width:150px; color:#666; padding:5px; border-radius:3px; box-shadow:0px 0px 5px #ccc;}
+.input_checkbox{vertical-align:middle; margin-top:-4px; margin-right:2px; outline:none; *hide-focus:expression(this.hideFocus=true);}
+.textarea{border:1px solid #999; background-color:#eee; width:550px; height:120px; color:#666; padding:5px; border-radius:3px; box-shadow:0px 0px 5px #ccc;}
+.select{border:1px solid #999; margin-right:5px; background-color:#eeeeee; border-radius:3px; color:#666;}
+.go_back{border:1px solid #999; margin-right:5px; background-color:#eeeeee; border-radius:3px; color:#666;}
+#submit_info{text-align:center; line-height:20px;}
+a{color:#666 !important;}
+.nav_title{position:absolute; top:0px; left:45%; text-align:center; background:#6a6c6f; padding:0px 10px; height:25px; line-height:25px; color:#FFF; font-weight:bold; border-bottom-left-radius:5px; border-bottom-right-radius:5px; box-shadow:0px 0px 10px #6a6c6f;}
+
+
+/**
+ * 后台登录页
+ */
+#login_container{width:420px; border:1px solid #999; border-radius:8px; box-shadow:0px 0px 20px #eee; background-color:#f6f6f6; position:absolute; top:20%;}
+#lc_title{text-align:center; font-weight:bold; font-size:24px; color:#666; cursor:move; border-radius:5px; margin:10px; margin-bottom:0px; padding:10px; background-color:#E8E8E8;}
+#lc_form{margin:20px;}
+#lc_power{text-align:center; margin:20px; margin-top:0px;}
+
+/**
+ * 后台首页
+ */
+#home_container{margin:20px; margin-bottom:0px; border:1px solid #999; border-radius:8px; box-shadow:0px 0px 20px #eee; background-color:#f6f6f6;}
+
+#hch_left{float:left; width:180px; text-indent:10px; margin-top:7px; *margin-top:9px;}
+#hch_right{float:left;}
+#hchr_left{float:left; margin-top:5px;}
+a.top_nav{float:left; padding:4px 5px; text-decoration:none; border:1px solid #999; border-bottom:none; border-top-left-radius:4px; border-top-right-radius:4px; box-shadow:0px 0px 5px #CCC; background-color:#e7e7e7; margin-right:6px; outline:none; *hide-focus:expression(this.hideFocus=true);}
+a.top_nav.top_nav_in{background-color:#f6f6f6;}
+a.top_nav:hover{background-color:#f1f1f1; text-decoration:none;}
+a.top_nav img{margin-right:5px; *margin-top:-3px; _margin-top:-1px;}
+#hchr_right{float:right; margin-top:5px; margin-right:4px;}
+
+#hcb_left{float:left; width:180px; border:1px solid #999; border-left:none; border-right:none; overflow:hidden;}
+.power_list{display:none; margin:10px;}
+.power_list h3{background:#f6f6f6; box-shadow:0px 0px 10px #CCC; color:#666;}
+div.pl_nav{padding:0px !important; background:#eee; box-shadow:0px 0px 10px #CCC;}
+.pl_nav a{text-decoration:none; padding-left:18px; *padding-left:17px; background:url(images/ico_circle_hollow.png) left center no-repeat; outline:none; *hide-focus:expression(this.hideFocus=true);}
+.pl_nav a:hover{background:url(images/ico_circle_solid.png) left center no-repeat; color:#900 !important; text-decoration:none;}
+.pl_nav div{margin:5px 12px;}
+a.nav_in{background:url(images/ico_circle_solid.png) left center no-repeat; color:#900 !important;}
+#hcb_right{float:left; border:1px solid #999; border-right:none;}
+
+#hcf_left{float:left; width:180px; line-height:25px; text-indent:10px;}
+#hcf_right{float:left;}
+#hcfr_time{float:right; line-height:25px; margin-right:10px; *margin-top:-1px; _margin-top:6px;}
+
+/**
+ * 其它页面
+ */
+.inde_info_div{border:1px solid #999; border-radius:5px; box-shadow:0px 0px 10px #CCC; margin-bottom:10px;}
+.inde_info_div table{text-align:center;}
+.inde_info_div table td{height:30px;}
+.iid_title{height:30px; line-height:30px; background-color:#dfdfdf; text-align:center;}
+#sel_list_show select{border:1px solid #999; margin-right:5px; background-color:#eeeeee; border-radius:3px; color:#666;}
+#list_table{text-align:center;}
+#list_table td{border-bottom:1px solid #ededed; height:30px;}
+#list_table tr:hover{background-color:#AFD6FF;}
+.power_left{text-align:left;}
+.power_left a{outline:none; *hide-focus:expression(this.hideFocus=true);}
+.td_power{height:35px; width:100px;}
+.td_power_children div{line-height:20px;}
+.have_search_key{font-weight:bold; color:#F00;}
+#search_form .input_radio_container{*float:left; *margin-top:2px;}
+
+/**
+ * jquery-ui 样式修改
+ */
+#tabs{border:none; background:none; display:none;}
+#tabs ul{border:none; border-bottom:1px solid #aaaaaa; border-radius:0px; background:none;}
+#tabs div{color:#666;}
+.ui-state-active{background:#f6f6f6 !important;}
+
+/**
+自訂區
+*/
+.go_back_button {
+    background-color: #ccc;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius:3px;	
+    color: #fff;
+    font-family: 'Oswald';
+    font-size: 14px;
+    text-decoration: none;
+    cursor: poiner;
+     border:none;
+}
+
+.go_back_button:hover {
+    border: none;
+    background:red;
+    box-shadow: 0px 0px 1px #777;
+
+}
+
+.excel_button {
+    background-color: #ccc;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius:3px;	
+    color: #fff;
+    font-family: 'Oswald';
+    font-size: 14px;
+    text-decoration: none;
+    cursor: poiner;
+     border:none;
+}
+
+.excel_button:hover {
+    border: none;
+    background:red;
+    box-shadow: 0px 0px 1px #777;
+
+}

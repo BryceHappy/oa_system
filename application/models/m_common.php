@@ -1,0 +1,238 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+/**
+ * 網站公用程式
+ * @author      lensic [mhy]
+ * @link        http://www.lensic.cn/
+ * @copyright   Copyright (c) 2013 - , lensic [mhy].
+ */
+class M_common extends CI_Model
+{
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->library('session');
+	}
+	
+	function get_session()
+	{
+		$session['admin_uid']        = $this->session->userdata('admin_uid');
+		$session['admin_username']   = $this->session->userdata('admin_username');
+		return $session;
+	}
+	
+	/**
+	 * 获取单条数据
+	 * 
+	 * @access   public
+	 * @param    string   表名
+	 * @param    array    条件数组
+	 * @param    string   查询字段
+	 * @return   array    一维数据数组
+	 */
+	function get_one($table, $where = array(), $fields = '*')
+	{
+		if($where)
+		{
+			$this->db->where($where);
+		}
+		return $this->db->select($fields)->from($table)->get()->row_array();
+	}
+	
+	/**
+	 * 获取多条数据
+	 * 
+	 * @access   public
+	 * @param    string   表名
+	 * @param    array    条件数组
+	 * @param    string   查询字段
+	 * @return   array    多维数据数组
+	 */
+	function get_all($table, $where = array(), $fields = '*')
+	{
+		if($where)
+		{
+			$this->db->where($where);
+		}
+		return $this->db->select($fields)->from($table)->get()->result_array();
+	}
+	
+	/*
+	 * 添加数据
+	 * 
+	 * @access   public
+	 * @param    string   表名
+	 * @param    array    数据数组
+	 * @return   number   添加的记录 ID
+	 */
+	function insert($table, $post)
+	{
+		$session = $this->get_session();
+		$post['creator'] = $session['admin_uid'];
+		$post['cdate'] = date("Y-m-d H:i:s");
+		$this->db->insert($table, $post);
+		return $this->db->insert_id();
+	}
+	
+	/*
+	 * 删除数据
+	 * 
+	 * @access   public
+	 * @param    string   表名
+	 * @param    array    条件数组
+	 * @return   number   影响行数
+	 */
+	function delete($table, $where)
+	{
+		$this->db->delete($table, $where);
+		return $this->db->affected_rows();
+	}
+	
+	/*
+	 * 更新数据
+	 * 
+	 * @access   public
+	 * @param    string   表名
+	 * @param    array    数据数组
+	 * @param    array    条件数组
+	 * @return   number   影响行数
+	 */
+	function update($table, $post, $where = array())
+	{
+		if($where)
+		{
+			$this->db->where($where);
+		}
+		$session = $this->get_session();
+		$post['modifier'] = $session['admin_uid'];
+		$post['mdate'] = date("Y-m-d H:i:s");
+		$this->db->update($table, $post);
+		return $this->db->affected_rows();
+	}
+
+	// http://ellislab.com/codeigniter/user-guide/database/helpers.html
+	function lastid()
+	{
+		return $this->db->insert_id();	
+	}
+	
+	function get_dict($dictType_name)
+	{
+		//先找字典種類 row_array 只取單筆
+        $dictQuery = $this->db->get_where('dict_type', array('name' => $dictType_name))->row_array();
+
+        //找到所有字典 result_array 取出為一個陣列
+        $this->db->select('id,value');
+        $dictionaryQuery = $this->db->get_where('dictionary', array('type_id' => $dictQuery['id']))->result_array();
+
+        return $dictionaryQuery;
+	}
+
+	function print_excel_table($table_name)
+    {
+        $query = $this->db->get($table_name);
+ 
+        if(!$query)
+            return false;
+ 
+        // Starting the PHPExcel library
+        $this->load->library('PHPExcel');
+        $this->load->library('PHPExcel/IOFactory');
+ 
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->getProperties()->setTitle("export")->setDescription("none");
+ 
+        $objPHPExcel->setActiveSheetIndex(0);
+ 
+        // Field names in the first row
+        $fields = $query->list_fields();
+        $col = 0;
+        foreach ($fields as $field)
+        {
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, 1, $field);
+            $col++;
+        }
+ 
+        // Fetching the table data
+        $row = 2;
+        foreach($query->result() as $data)
+        {
+            $col = 0;
+            foreach ($fields as $field)
+            {
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $data->$field);
+                $col++;
+            }
+ 
+            $row++;
+        }
+ 
+        $objPHPExcel->setActiveSheetIndex(0);
+ 
+        $objWriter = IOFactory::createWriter($objPHPExcel, 'Excel5');
+		
+ 		$name = $table_name.'_'.date('YmdHis');
+        // Sending headers to force the user to download the file
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="'.$name.'.xls"');
+        header('Cache-Control: max-age=0');
+ 
+        $objWriter->save('php://output');
+    }
+
+	function result_print_excel($query)
+    {
+        // $query = $this->db->get($table_name);
+ 
+        if(!$query)
+            return false;
+ 
+        // Starting the PHPExcel library
+        $this->load->library('PHPExcel');
+        $this->load->library('PHPExcel/IOFactory');
+ 
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->getProperties()->setTitle("export")->setDescription("none");
+ 
+        $objPHPExcel->setActiveSheetIndex(0);
+ 
+        // Field names in the first row
+        $fields = $query->list_fields();
+        $col = 0;
+        foreach ($fields as $field)
+        {
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, 1, $field);
+            $col++;
+        }
+ 
+        // Fetching the table data
+        $row = 2;
+        foreach($query->result() as $data)
+        {
+            $col = 0;
+            foreach ($fields as $field)
+            {
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $data->$field);
+                $col++;
+            }
+ 
+            $row++;
+        }
+ 
+        $objPHPExcel->setActiveSheetIndex(0);
+ 
+        $objWriter = IOFactory::createWriter($objPHPExcel, 'Excel5');
+		
+ 		$name = date('YmdHis');
+        // Sending headers to force the user to download the file
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="'.$name.'.xls"');
+        header('Cache-Control: max-age=0');
+ 
+        $objWriter->save('php://output');
+    }
+
+}
+
+/* End of file m_common.php */
+/* Location: ./application/models/m_common.php */
