@@ -70,6 +70,42 @@ class Setting extends A_Controller
 		}
 		$this->load->view($this->file_name . $controller, $view_datas);
 	}
+
+	function get_table()
+	{
+		$this->load->model('admin/m_tables');
+		$view_datas['title'] = '資料欄位管理';
+
+		//先把資料庫更新
+		$this->m_common->insert_db_table();
+
+        $view_datas['search_key'] = $search_key = $this->input->get('search_key');
+        $view_datas['status'] = $status = $this->input->get('status') ? $status = $this->input->get('status') : 1;
+
+        $this->load->helper('my_page');
+        $config['page_query_string'] = true;
+        // get this function name =  __FUNCTION__ 
+        $config['base_url'] = site_url('admin/setting/'.__FUNCTION__) . '?status=' . $status . ($search_key ? '&search_key=' . $search_key : '');
+        $config['total_rows'] = $this->m_tables->db_table_datas_url(array('get_count' => TRUE, 'search_key' => $search_key, 'status' => $status));
+        $config['uri_segment'] = 4;
+		$config['per_page'] = 10;
+        $view_datas['pages'] = page_links($config);
+        $view_datas['url'] = base_url().'index.php/'.'admin/setting/field/';
+        $view_datas['datas'] = $this->m_tables->db_table_datas_url(array('limit' => TRUE, 'search_key' => $search_key, 'status' => $status));
+        // $view_datas['levle_1'] = $this->uri->uri_string();
+		$offset = $this->input->get($this->pagination->query_string_segment) ? $this->input->get($this->pagination->query_string_segment) : 0;
+		
+		//set excel config
+		$to_excel_str ='';
+		$to_excel_str .= "page_".$config['per_page'];
+		$to_excel_str .= "__offset_".$offset;
+		$to_excel_str .= "__status_".$status;
+		$to_excel_str .= "__key_".($search_key ? $search_key : 0);
+		
+        $view_datas['excel_url'] = $to_excel_str;
+        $view_datas['method'] = 'GET';
+        $this->load->view($this->file_name.'table_list', $view_datas);
+	}
 }
 
 /* End of file setting.php */

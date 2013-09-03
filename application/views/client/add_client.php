@@ -18,7 +18,7 @@
     <tr>
         <td class="td_right">客戶類別：</td>
         <td>
-            <select  name="client_type" id="client_type">
+            <select  name="client_type" id="client_type" class='select'>
                 <?php foreach ($client_type as $key => $value):?>
                         <option value='<? echo $value['id']; ?>'><? echo $value['value']; ?></option>
                 <?php endforeach ?>
@@ -28,7 +28,7 @@
     <tr>
         <td class="td_right">客戶來源：</td>
         <td>
-            <select  name="source" id="source">
+            <select  name="source" id="source" class='select'>
                 <?php foreach ($source as $key => $value):?>
                         <option value='<? echo $value['id']; ?>'><? echo $value['value']; ?></option>
                 <?php endforeach ?>

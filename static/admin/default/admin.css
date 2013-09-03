@@ -11,7 +11,7 @@ body{background-color:#f6f6f6; color:#666; padding:35px 20px 20px;font-size:14px
 .input_text{border:1px solid #999; background-color:#eee; width:150px; color:#666; padding:5px; border-radius:3px; box-shadow:0px 0px 5px #ccc;}
 .input_checkbox{vertical-align:middle; margin-top:-4px; margin-right:2px; outline:none; *hide-focus:expression(this.hideFocus=true);}
 .textarea{border:1px solid #999; background-color:#eee; width:550px; height:120px; color:#666; padding:5px; border-radius:3px; box-shadow:0px 0px 5px #ccc;}
-.select{border:1px solid #999; margin-right:5px; background-color:#eeeeee; border-radius:3px; color:#666;}
+.select{border:1px solid #999; margin-right:5px; background-color:#eeeeee; border-radius:3px; color:#666; overflow: hidden; border: 1px solid #ccc;}
 .go_back{border:1px solid #999; margin-right:5px; background-color:#eeeeee; border-radius:3px; color:#666;}
 #submit_info{text-align:center; line-height:20px;}
 a{color:#666 !important;}
@@ -88,37 +88,42 @@ a.nav_in{background:url(images/ico_circle_solid.png) left center no-repeat; colo
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius:3px;	
-    color: #fff;
+    color: #000000;
     font-family: 'Oswald';
     font-size: 14px;
+    width:80px;
+    padding:5px;
     text-decoration: none;
     cursor: poiner;
-     border:none;
+    border:none;
 }
 
 .go_back_button:hover {
     border: none;
     background:red;
     box-shadow: 0px 0px 1px #777;
-
+    color: #fff;
 }
 
-.excel_button {
+.r_button {
     background-color: #ccc;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius:3px;	
-    color: #fff;
+    color: #000000;
     font-family: 'Oswald';
     font-size: 14px;
+    width:50px;
+    padding:5px;
     text-decoration: none;
     cursor: poiner;
-     border:none;
+    border:none;
 }
 
-.excel_button:hover {
+.r_button:hover {
     border: none;
     background:red;
+    color: #fff;
     box-shadow: 0px 0px 1px #777;
 
 }

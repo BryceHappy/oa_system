@@ -32,13 +32,54 @@ class M_common extends CI_Model
 	 */
 	function get_one($table, $where = array(), $fields = '*')
 	{
+
 		if($where)
 		{
 			$this->db->where($where);
 		}
 		return $this->db->select($fields)->from($table)->get()->row_array();
 	}
-	
+
+
+	/**
+	 * 獲取全部TABLE
+	 * 
+	 * @access   public
+	 * @return   array    TABLE名稱
+	 */
+	function insert_db_table()
+	{	
+		$table_name = 'db_table';
+		$all_table = $this->db->list_tables();
+		$db_tables = $this->get_all($table_name,'','name');
+
+
+		foreach ($all_table as $table)
+		{
+			if (count($db_tables) > 0)
+			{
+				$count = 0;
+			   foreach ($db_tables as $db_table_value)
+			   {
+				   	if ($table == $db_table_value['name']) 
+				   	{
+				   		$count++; 
+				   	}
+			   }
+
+			   if($count == 0)
+			   {
+			   		$data['name'] = $table;
+		   			$this->insert($table_name,$data);
+			   }
+
+			} else {
+				$data['name'] = $table;
+				$this->insert($table_name,$data);
+			}
+		}
+	}
+
 	/**
 	 * 获取多条数据
 	 * 
