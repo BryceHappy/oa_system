@@ -72,7 +72,17 @@ $(function (){
 	$('#dictionary_form').submit(function (){
 	});
 
+	$('#table_field_form').submit(function (){
+	});
+	
+
 });
+
+function select_all()
+{
+    $(":checkbox").attr("checked", true)
+}
+
 
 // 獲取當前時間
 function get_time()

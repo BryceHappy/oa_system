@@ -16,7 +16,7 @@
     <?php foreach($datas as $n => $data): ?>
     <tr id="tr_table_<?php echo $data['id']; ?>">
     	<td><? echo $data['id']; ?></td>
-        <td><a href="<?php echo site_url('admin/setting/get_table_field/' . $data['id']); ?>" onClick="setPosCookies();" title="檢視欄位"><?php echo str_replace($search_key, '<span class="have_search_key">' . $search_key . '</span>', $data['name']); ?></a></td>
+        <td><a href="<?php echo $url.'/'. $data['id']; ?>" onClick="setPosCookies();" title="檢視欄位"><?php echo str_replace($search_key, '<span class="have_search_key">' . $search_key . '</span>', $data['name']); ?></a></td>
         <td><? echo $data['note']; ?></td>
         <td><a href="<?php echo site_url('admin/setting/table_edit/' . $data['id']); ?>" onclick="window.open(this.href, '', 'width=500,height=500,resizable=no,status=no,location=no,scrollbar=no,toolbar=no'); window.onclick = setPosCookies; return false;"><img src="<?php echo SITE_ADMIN_STATIC; ?>/images/edit.gif" alt="編輯" /></a> <a href="javascript:void(0);" onClick="return show_dialog('確定刪除該紀錄嗎？', 'del', '<?php echo site_url('admin/admin/del/' . $data['id']); ?>', 'tr_user_<?php echo $data['id']; ?>');" title="刪除"><img src="<?php echo SITE_ADMIN_STATIC; ?>/images/del.gif" alt="刪除" /></a></td>
     </tr>

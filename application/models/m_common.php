@@ -157,6 +157,12 @@ class M_common extends CI_Model
 		return $this->db->insert_id();	
 	}
 	
+	//http://www.codeigniter.org.tw/user_guide/database/fields.html
+	function get_field($table_name)
+	{
+		return $fields = $this->db->list_fields($table_name);
+	}
+
 	function get_dict($dictType_name)
 	{
 		//先找字典種類 row_array 只取單筆
@@ -169,6 +175,30 @@ class M_common extends CI_Model
         return $dictionaryQuery;
 	}
 
+	/* 組合excel string
+	 * 
+	 * 
+	 * @access   public
+	 * @param    array   設定檔的字串：per_page、offset、status、search_key
+	 * @return   string  輸出字串
+	 */
+	function combine_excel_str($ary=array())
+	{
+		$to_excel_str ='';
+		$to_excel_str .= "page_".$ary['per_page'];
+		$to_excel_str .= "__offset_".$ary['offset'];
+		$to_excel_str .= "__status_".$ary['status'];
+		$to_excel_str .= "__key_".$ary['search_key'];
+		return $to_excel_str;
+	}
+
+	/* 輸出EXCEL
+	 * 
+	 * 
+	 * @access   public
+	 * @param    string   資料表名
+	 * @return   .EXCEL   輸出EXCEL表
+	 */
 	function print_excel_table($table_name)
     {
         $query = $this->db->get($table_name);
@@ -221,6 +251,14 @@ class M_common extends CI_Model
         $objWriter->save('php://output');
     }
 
+
+	/* 輸出EXCEL
+	 * 
+	 * 
+	 * @access   public
+	 * @param    object   已query後的結果(object)
+	 * @return   .EXCEL   輸出EXCEL表
+	 */
 	function result_print_excel($query)
     {
         // $query = $this->db->get($table_name);
