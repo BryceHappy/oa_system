@@ -1,7 +1,7 @@
 <?php $this->load->view('header'); ?>
 <form id="search_form" method="<? echo $method ?>">
     <span class="input_radio_container"><input type="radio" id="radio1" name="status" value="1" /><label for="radio1">正常</label><input type="radio" id="radio2" name="status" value="2" /><label for="radio2">關閉</label></span> <input type="text" class="input_text" name="search_key" value="<?php echo $search_key; ?>" /> <input type="submit" value="搜尋" />
-<BR><BR><input type="button" class='r_button' value="列印" onclick="window.location='<?php echo site_url('admin/setting/print_excel'.'/'.$excel_url); ?>';" />  
+<BR><BR><input type="button" class='r_button' value="列印" onclick="window.location='<?php echo site_url('common/print_excel'.'/'.$excel_url); ?>';" />  
 </form>
 <table id="list_table" style="margin:20px 0px;" width="100%" cellpadding="0" cellspacing="0" class="tablesorter">
 <thead>     

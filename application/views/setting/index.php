@@ -42,11 +42,11 @@
     <tbody>
         <tr>
         	<td class="td_right">開始密鑰：</td>
-            <td><input class="input_text" type="text" id="site_encryption_key_begin" name="site_encryption_key_begin" maxlength="20" value="<?php echo SITE_ENCRYPTION_KEY_BEGIN; ?>" title="開始密鑰，运用了 helper 中的 my_md5 函数，請在第一次使用系统時設置" /></td>
+            <td><input class="input_text" type="text" id="site_encryption_key_begin" name="site_encryption_key_begin" maxlength="20" value="<?php echo SITE_ENCRYPTION_KEY_BEGIN; ?>" title="開始密鑰，運用了 helper 中的 my_md5 函数，請在第一次使用系统時設置" /></td>
         </tr>
         <tr>
         	<td class="td_right">結束密鑰：</td>
-            <td><input class="input_text" type="text" id="site_encryption_key_end" name="site_encryption_key_end" maxlength="20" value="<?php echo SITE_ENCRYPTION_KEY_END; ?>" title="結束密鑰，运用了 helper 中的 my_md5 函数，請在第一次使用系统時設置" /></td>
+            <td><input class="input_text" type="text" id="site_encryption_key_end" name="site_encryption_key_end" maxlength="20" value="<?php echo SITE_ENCRYPTION_KEY_END; ?>" title="結束密鑰，運用了 helper 中的 my_md5 函数，請在第一次使用系统時設置" /></td>
         </tr>
         <tr>
         	<td class="td_right"></td>
@@ -63,19 +63,19 @@
     <tbody>
         <tr>
         	<td class="td_right">上傳圖片大小：</td>
-            <td><input class="input_text" type="text" id="site_upload_image_size" name="site_upload_image_size" value="<?php echo SITE_UPLOAD_IMAGE_SIZE; ?>" title="允許上傳圖片的最大值，单位 B" /> SITE_UPLOAD_IMAGE_SIZE</td>
+            <td><input class="input_text" type="text" id="site_upload_image_size" name="site_upload_image_size" value="<?php echo SITE_UPLOAD_IMAGE_SIZE; ?>" title="允許上傳圖片的最大值，單位 B" /> SITE_UPLOAD_IMAGE_SIZE</td>
         </tr>
         <tr>
         	<td class="td_right">上傳動畫大小：</td>
-            <td><input class="input_text" type="text" id="site_upload_flash_size" name="site_upload_flash_size" value="<?php echo SITE_UPLOAD_FLASH_SIZE; ?>" title="允許上傳動畫的最大值，单位 B" /> SITE_UPLOAD_FLASH_SIZE</td>
+            <td><input class="input_text" type="text" id="site_upload_flash_size" name="site_upload_flash_size" value="<?php echo SITE_UPLOAD_FLASH_SIZE; ?>" title="允許上傳動畫的最大值，單位 B" /> SITE_UPLOAD_FLASH_SIZE</td>
         </tr>
         <tr>
         	<td class="td_right">上傳視頻大小：</td>
-            <td><input class="input_text" type="text" id="site_upload_media_size" name="site_upload_media_size" value="<?php echo SITE_UPLOAD_MEDIA_SIZE; ?>" title="允許上傳視頻的最大值，单位 B" /> SITE_UPLOAD_MEDIA_SIZE</td>
+            <td><input class="input_text" type="text" id="site_upload_media_size" name="site_upload_media_size" value="<?php echo SITE_UPLOAD_MEDIA_SIZE; ?>" title="允許上傳視頻的最大值，單位 B" /> SITE_UPLOAD_MEDIA_SIZE</td>
         </tr>
         <tr>
         	<td class="td_right">上傳文件大小：</td>
-            <td><input class="input_text" type="text" id="site_upload_file_size" name="site_upload_file_size" value="<?php echo SITE_UPLOAD_FILE_SIZE; ?>" title="允許上傳文件的最大值，单位 B" /> SITE_UPLOAD_FILE_SIZE</td>
+            <td><input class="input_text" type="text" id="site_upload_file_size" name="site_upload_file_size" value="<?php echo SITE_UPLOAD_FILE_SIZE; ?>" title="允許上傳文件的最大值，單位 B" /> SITE_UPLOAD_FILE_SIZE</td>
         </tr>
         <tr>
         	<td class="td_right"></td>
@@ -94,19 +94,19 @@
     <tbody>
         <tr>
             <td class="td_right">上傳圖片大小：</td>
-            <td><input class="input_text" type="text" id="site_upload_image_size" name="site_upload_image_size" value="<?php echo SITE_UPLOAD_IMAGE_SIZE; ?>" title="允許上傳圖片的最大值，单位 B" /> SITE_UPLOAD_IMAGE_SIZE</td>
+            <td><input class="input_text" type="text" id="site_upload_image_size" name="site_upload_image_size" value="<?php echo SITE_UPLOAD_IMAGE_SIZE; ?>" title="允許上傳圖片的最大值，單位 B" /> SITE_UPLOAD_IMAGE_SIZE</td>
         </tr>
         <tr>
             <td class="td_right">上傳動畫大小：</td>
-            <td><input class="input_text" type="text" id="site_upload_flash_size" name="site_upload_flash_size" value="<?php echo SITE_UPLOAD_FLASH_SIZE; ?>" title="允許上傳動畫的最大值，单位 B" /> SITE_UPLOAD_FLASH_SIZE</td>
+            <td><input class="input_text" type="text" id="site_upload_flash_size" name="site_upload_flash_size" value="<?php echo SITE_UPLOAD_FLASH_SIZE; ?>" title="允許上傳動畫的最大值，單位 B" /> SITE_UPLOAD_FLASH_SIZE</td>
         </tr>
         <tr>
             <td class="td_right">上傳視頻大小：</td>
-            <td><input class="input_text" type="text" id="site_upload_media_size" name="site_upload_media_size" value="<?php echo SITE_UPLOAD_MEDIA_SIZE; ?>" title="允許上傳視頻的最大值，单位 B" /> SITE_UPLOAD_MEDIA_SIZE</td>
+            <td><input class="input_text" type="text" id="site_upload_media_size" name="site_upload_media_size" value="<?php echo SITE_UPLOAD_MEDIA_SIZE; ?>" title="允許上傳視頻的最大值，單位 B" /> SITE_UPLOAD_MEDIA_SIZE</td>
         </tr>
         <tr>
             <td class="td_right">上傳文件大小：</td>
-            <td><input class="input_text" type="text" id="site_upload_file_size" name="site_upload_file_size" value="<?php echo SITE_UPLOAD_FILE_SIZE; ?>" title="允許上傳文件的最大值，单位 B" /> SITE_UPLOAD_FILE_SIZE</td>
+            <td><input class="input_text" type="text" id="site_upload_file_size" name="site_upload_file_size" value="<?php echo SITE_UPLOAD_FILE_SIZE; ?>" title="允許上傳文件的最大值，單位 B" /> SITE_UPLOAD_FILE_SIZE</td>
         </tr>
         <tr>
             <td class="td_right"></td>

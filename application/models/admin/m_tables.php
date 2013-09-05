@@ -103,7 +103,8 @@ class M_tables extends CI_Model
 			$table_config['table'] = 'db_table_field';
 			$table_config['where'] = array('db_table_id' => $db_table_id, 'field_name' => $field_name );
 
-			$tmp_data = $this->m_tables->datas_url($table_config);
+			// $tmp_data = $this->m_tables->datas_url($table_config);
+			$tmp_data = $this->datas_url($table_config);
 
 			if(count($tmp_data)>0)
 			{
@@ -123,6 +124,50 @@ class M_tables extends CI_Model
 		}
 
 		return $datas;
+	}
+
+
+	/**
+	 * 將field寫進db_table_field
+	 * 
+	 * @access   public
+	 * @return   array    TABLE名稱
+	 */
+	function insert_db_table_field($db_table_id)
+	{	
+		$table_name = 'db_table_field';
+		$db_tables = $this->db->select('name')->from('db_table')->where(array('id' => $db_table_id))->get()->row_array();
+		$fields_ary = $this->db->list_fields($db_tables['name']);
+		$all_db_table_field_ary = $this->db->select('field_name')->from($table_name)->where(array('db_table_id' => $db_table_id))->get()->result_array();
+
+		foreach ($fields_ary as $field)
+		{
+			if (count($all_db_table_field_ary) > 0)
+			{
+				$count = 0;
+		   		foreach ($all_db_table_field_ary as $db_table_field_ary)
+				{
+					if ($db_table_field_ary['field_name'] == $field) 
+					{
+						$count++; 
+					}
+				}
+
+			   if($count == 0)
+			   {
+			   		$data['field_name'] = $field;
+			   		$data['db_table_id'] = $db_table_id;
+			   		$data['print'] = '0';
+		   			$this->m_common->insert($table_name,$data);
+			   }
+
+			} else {
+		   		$data['field_name'] = $field;
+		   		$data['db_table_id'] = $db_table_id;
+		   		$data['print'] = '0';
+				$this->m_common->insert($table_name,$data);
+			}
+		}
 	}
 }
 

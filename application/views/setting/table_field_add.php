@@ -10,7 +10,6 @@
     <?php
     $i=0;
     foreach($datas as $data):
-        print_r($data['2']);
         if($data['2'] == 1)
             $check = 'CHECKED';
         else

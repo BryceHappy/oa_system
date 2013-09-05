@@ -24,7 +24,7 @@ body{background-color:#c8c8c8; padding:0px;}
         </tbody>
         </table>
         </form>
-        <div id="lc_power">Power By <a id="link_author" class="a_color" href="http://www.lensic.cn/" target="_blank">Lensic</a></div>
+        <div id="lc_power">Power By <a id="link_author" class="a_color" href="#" target="_blank">Bryce</a></div>
     </div>
 </div>
 <?php echo $this->load->view('footer'); ?>

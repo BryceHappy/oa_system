@@ -98,6 +98,34 @@ class M_common extends CI_Model
 		return $this->db->select($fields)->from($table)->get()->result_array();
 	}
 	
+	/**
+	 * 取得多筆row中的單一欄位
+	 * 
+	 * @access   public
+	 * @param    string   表名
+	 * @param    array    条件数组
+	 * @param    string   查询字段
+	 * @return   array    多维数据数组
+	 */
+	function get_one_field($table, $where = array(), $fields)
+	{
+		if(!is_array($fields))
+		{
+			if($where)
+			{
+				$this->db->where($where);
+			}
+			$result_ary =  $this->db->select($fields)->from($table)->get()->result_array();
+			foreach ($result_ary as $data)
+			{
+				$tmp[] = $data[$fields];
+			}
+		} else {
+			$tmp = "陣列不適用此function";
+		}
+		return $tmp;
+	}
+
 	/*
 	 * 添加数据
 	 * 
@@ -173,6 +201,53 @@ class M_common extends CI_Model
         $dictionaryQuery = $this->db->get_where('dictionary', array('type_id' => $dictQuery['id']))->result_array();
 
         return $dictionaryQuery;
+	}
+
+	function to_excel($arg = array())
+	{
+		if(isset($arg['field']))
+		{	
+			if (is_array($arg['field']))
+			{
+				foreach ($arg['field'] as $field_value)
+				{
+					if (isset($field))
+					{
+						$field .= ','.$field_value;
+					} else {
+						$field = $field_value;
+					}
+				}
+			} else {
+				$field = $arg['field'];
+			}
+
+		} else {
+			$field = '*';
+		}
+
+		$this->db->select($field)->from($arg['table_name']);
+		
+		if(isset($arg['status']) && $arg['search_key'])
+		{
+			$this->db->where('status', $arg['status']);
+		}
+		if(isset($arg['search_key']) && $arg['search_key'])
+		{
+			$this->db->like('name', $arg['search_key']);
+			$this->db->or_like('id', $arg['search_key']);
+		}
+
+		if(isset($arg['limit']))
+		{
+			// $this->db->limit($this->pagination->per_page, $this->input->get($this->pagination->query_string_segment) ? $this->input->get($this->pagination->query_string_segment) : 0);
+			$this->db->limit($arg['limit'][0],$arg['limit'][1]);
+		}
+		$query = $this->db->get();
+		// print_r($query->result_array());
+		// print_r($this->input->get($this->pagination->query_string_segment));
+		// exit;
+		return $this->result_print_excel($query);
 	}
 
 	/* 組合excel string
@@ -311,6 +386,17 @@ class M_common extends CI_Model
         $objWriter->save('php://output');
     }
 
+
+	function parsing_criteria($pairs)
+	{
+	    $criteria = array();
+        $pairs = explode("__",$pairs);
+        foreach($pairs as $row){
+            $array_row = explode("_",$row);
+            $criteria[$array_row[0]] = $array_row[1];
+        }
+	    return $criteria;
+	}
 }
 
 /* End of file m_common.php */

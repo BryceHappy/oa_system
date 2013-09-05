@@ -27,6 +27,9 @@ class Tables extends A_Controller
         
         //先把資料庫更新
         $this->m_common->insert_db_table();
+
+        //set table
+        $table = 'db_table';
         
         $view_datas['search_key'] = $search_key = $this->input->get('search_key');
         $view_datas['status']     = $status = $this->input->get('status') ? $status = $this->input->get('status') : 1;
@@ -36,6 +39,7 @@ class Tables extends A_Controller
         // get this function name =  __FUNCTION__ 
         $config['base_url']          = site_url($path) . '?status=' . $status . ($search_key ? '&search_key=' . $search_key : '');
         $config['total_rows']        = $this->m_tables->db_table_datas_url(array(
+            'table' => $table,
             'get_count' => TRUE,
             'search_key' => $search_key,
             'status' => $status
@@ -45,7 +49,8 @@ class Tables extends A_Controller
         $view_datas['pages']         = page_links($config);
 
         $view_datas['url']           = site_url('admin/tables/get_table_field/');
-        $view_datas['datas']         = $this->m_tables->db_table_datas_url(array(
+        $view_datas['datas']         = $this->m_tables->db_table_datas_url(array(   
+            'table' => $table,
             'limit' => TRUE,
             'search_key' => $search_key,
             'status' => $status
@@ -59,21 +64,22 @@ class Tables extends A_Controller
         $to_excel_config['status']     = $status;
         $to_excel_config['search_key'] = ($search_key ? $search_key : 0);
         
-        $view_datas['excel_url'] = $this->m_common->combine_excel_str($to_excel_config);
+        $view_datas['excel_url'] = $table.'/'.$this->m_common->combine_excel_str($to_excel_config);
         $view_datas['method']    = 'GET';
         $this->load->view($this->file_name . 'table_list', $view_datas);
     }
     
     function get_table_field($db_table_id)
     {
+        $db_table_id = $this->uri->segment(4);
         //set path
         $dir        = basename(__DIR__);
         $controller = strtolower(__CLASS__);
-        $path       = $dir . '/' . $controller . '/' . __FUNCTION__;
+        $path       = $dir . '/' . $controller . '/' . __FUNCTION__ . '/' . $db_table_id;
         
         //set table
         $table = 'db_table_field';
-        
+        $this->m_tables->insert_db_table_field($db_table_id);
         $tb_name             = $this->m_common->get_one('db_table', array(
             'id' => $db_table_id
         ));
@@ -92,7 +98,6 @@ class Tables extends A_Controller
             'search_key' => $search_key,
             'where' => array(
                 'db_table_id' => $db_table_id,
-                'print' => '1'
             )
         ));
         $config['uri_segment']       = 4;
@@ -104,7 +109,7 @@ class Tables extends A_Controller
         $to_excel_config['offset']     = $offset;
         $to_excel_config['status']     = $status;
         $to_excel_config['search_key'] = ($search_key ? $search_key : 0);
-        $view_datas['excel_url']       = $this->m_common->combine_excel_str($to_excel_config);
+        $view_datas['excel_url']       = $tb_name['name'].'/'.$this->m_common->combine_excel_str($to_excel_config);
         
         $view_datas['pages']   = page_links($config);
         $view_datas['add_url'] = site_url('admin/tables/add_table_field/' . $tb_name['id']);
@@ -114,19 +119,18 @@ class Tables extends A_Controller
             'search_key' => $search_key,
             'where' => array(
                 'db_table_id' => $db_table_id,
-                'print' => '1'
             )
         ));
         $view_datas['method']  = 'GET';
         $this->load->view($this->file_name . 'table_field_list', $view_datas);
     }
-    
+
     function add_table_field($db_table_id)
     {
         $tb_name             = $this->m_common->get_one('db_table', array(
             'id' => $db_table_id
         ));
-        $view_datas['title'] = '新增資料欄位 - ' . $tb_name['name'];
+        $view_datas['title'] = '新增輸出資料欄位 - ' . $tb_name['name'];
         if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
             
             //get input data
@@ -186,8 +190,34 @@ class Tables extends A_Controller
         $view_datas['db_table_id'] = $db_table_id;
         $this->load->view($this->file_name . 'table_field_add', $view_datas);
     }
-    
-    
+
+
+    function table_field_edit($db_table_field_id)
+    {
+        $table_name = 'db_table_field';
+        $view_datas['edit_data'] = $this->m_common->get_one($table_name, array('id' => $db_table_field_id),'field_name,note');
+
+        if($view_datas['edit_data'])
+        {
+            $view_datas['title'] = '編輯資料 - '.$view_datas['edit_data']['field_name'];
+            if(strtolower($_SERVER['REQUEST_METHOD']) == 'post')
+            {
+                $post['note'] = $this->input->post('note');
+                $action = $this->m_common->update($table_name, $post, array('id' => $db_table_field_id));
+                $view_datas['edit_data'] = array_merge($view_datas['edit_data'], $post);
+                if($action)
+                {
+                    $view_datas['submit_info'] = array('title' => '編輯成功');
+                } else {
+                    $view_datas['submit_info'] = array('title' => '資料未修改或更新失敗');
+                }
+            }
+            $this->load->view($this->file_name . 'table_field_edit', $view_datas);
+        } else {
+            redirect('admin/admin/index');
+        }
+    }
+
 }
 
 /* End of file setting.php */

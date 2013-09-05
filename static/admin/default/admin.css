@@ -127,3 +127,26 @@ a.nav_in{background:url(images/ico_circle_solid.png) left center no-repeat; colo
     box-shadow: 0px 0px 1px #777;
 
 }
+
+.r_4_button {
+    background-color: #ccc;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius:3px;  
+    color: #000000;
+    font-family: 'Oswald';
+    font-size: 14px;
+    width:70px;
+    padding:5px;
+    text-decoration: none;
+    cursor: poiner;
+    border:none;
+}
+
+.r_4_button:hover {
+    border: none;
+    background:red;
+    color: #fff;
+    box-shadow: 0px 0px 1px #777;
+
+}
