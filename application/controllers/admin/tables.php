@@ -15,13 +15,16 @@ class Tables extends A_Controller
         parent::__construct();
         $this->file_name = 'setting/';
         $this->load->model('admin/m_tables');
+        $this->dir        = basename(__DIR__);
+        $this->controller = strtolower(__CLASS__);
+        $this->level_1_url = basename(__DIR__) . '/' . strtolower(__CLASS__) . '/get_table';
+        $this->level_2_url = basename(__DIR__) . '/' . strtolower(__CLASS__) . '/get_table_field/';
     }
     
     function get_table()
     {
-        $dir        = basename(__DIR__);
-        $controller = strtolower(__CLASS__);
-        $path       = $dir . '/' . $controller . '/' . __FUNCTION__;
+
+        $path       = $this->dir . '/' . $this->controller . '/' . __FUNCTION__;
         
         $view_datas['title'] = '輸出資料表管理';
         
@@ -69,13 +72,12 @@ class Tables extends A_Controller
         $this->load->view($this->file_name . 'table_list', $view_datas);
     }
     
-    function get_table_field($db_table_id)
+    function get_table_field()
     {
         $db_table_id = $this->uri->segment(4);
         //set path
-        $dir        = basename(__DIR__);
-        $controller = strtolower(__CLASS__);
-        $path       = $dir . '/' . $controller . '/' . __FUNCTION__ . '/' . $db_table_id;
+
+        $path       = $this->dir . '/' . $this->controller . '/' . __FUNCTION__ . '/' . $db_table_id;
         
         //set table
         $table = 'db_table_field';
@@ -122,6 +124,19 @@ class Tables extends A_Controller
             )
         ));
         $view_datas['method']  = 'GET';
+        $view_datas['h_url']['name'] = $tb_name['name'];
+        $view_datas['h_url']['level_1_url'] = site_url($this->level_1_url);
+
+        //針對需要輸出的資料加上圖形
+        foreach ($view_datas['datas'] as $key => $data)
+        {
+            if($data['print'])
+            {
+                $view_datas['datas'][$key]['img'] = "<img src=".base_url()."resources/images/print.png>";
+            } else {
+                $view_datas['datas'][$key]['img'] = '';
+            }
+        }
         $this->load->view($this->file_name . 'table_field_list', $view_datas);
     }
 
@@ -179,14 +194,22 @@ class Tables extends A_Controller
             }
             
             $view_datas['submit_info'] = $action ? array(
-                'title' => '增加成功'
+                'title' => '編輯成功'
             ) : array(
-                'title' => '增加失敗'
+                'title' => '編輯失敗'
             );
         }
         
         $this_tb_field             = $this->m_common->get_field($tb_name['name']);
         $view_datas['datas']       = $this->m_tables->chkeck_data($db_table_id, $this_tb_field);
+        foreach ($view_datas['datas'] as $key => $tmp_data)
+        {
+            if($tmp_data['2'] == 1)
+                $view_datas['datas'][$key][] = 'CHECKED';
+            else
+                $view_datas['datas'][$key][] = '';
+        }
+
         $view_datas['db_table_id'] = $db_table_id;
         $this->load->view($this->file_name . 'table_field_add', $view_datas);
     }

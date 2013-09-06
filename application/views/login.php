@@ -19,7 +19,7 @@ body{background-color:#c8c8c8; padding:0px;}
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" value="提交" /> <input type="reset" value="取消" /></td>
+                <td><input type="submit" value="送出" /> <input type="reset" value="取消" /></td>
             </tr>
         </tbody>
         </table>

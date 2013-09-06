@@ -76,12 +76,15 @@ $(function (){
 	});
 	
 
-});
+	$('#select-all').click(function(event) {
+		var selected = this.checked;
+		// Iterate each checkbox
+		$(':checkbox').each(function() {
+			this.checked = selected;
+		});
 
-function select_all()
-{
-    $(":checkbox").attr("checked", true)
-}
+	});
+});
 
 
 // 獲取當前時間
