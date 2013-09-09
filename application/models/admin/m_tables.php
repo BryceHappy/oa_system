@@ -60,15 +60,16 @@ class M_tables extends CI_Model
 		{	
 			if (is_array($arg['field']))
 			{
-				foreach ($arg['field'] as $field_value)
-				{
-					if (isset($field))
-					{
-						$field .= ','.$field_value;
-					} else {
-						$field = $field_value;
-					}
-				}
+				$field = implode(",", $arg['field']);
+				// foreach ($arg['field'] as $field_value)
+				// {
+				// 	if (isset($field))
+				// 	{
+				// 		$field .= ','.$field_value;
+				// 	} else {
+				// 		$field = $field_value;
+				// 	}
+				// }
 			}
 
 		} else {

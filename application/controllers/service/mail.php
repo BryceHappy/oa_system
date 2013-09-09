@@ -12,6 +12,15 @@ class Mail extends A_Controller {
 	}
 
 	function index(){
+
+   $this->load->library('ckeditor');
+   $this->load->library('ckfinder');
+   $this->ckeditor = new CKEditor();
+   $this->ckeditor->basePath = 'http://localhost/oa_system/resources/ckeditor/';
+   $this->ckeditor->config['toolbar'] = 'Full';
+
+   CKFinder::SetupCKEditor($this->ckeditor, 'resources/ckfinder/');
+
 	$view_datas['title'] = '發送mail';
 
 	if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
