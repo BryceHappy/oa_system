@@ -111,8 +111,8 @@ KindEditor.ready(function (K){
 		width : '800px',
 		height : '380px',
 		allowFileManager : true,
-		uploadJson : '<?php echo site_url('common/editor_upload'); ?>',
-		fileManagerJson : '<?php echo site_url('common/editor_manager'); ?>'
+        uploadJson : '<?php echo base_url().'common/editor_upload'; ?>',
+        fileManagerJson : '<?php echo base_url().'common/editor_manager'; ?>'
 	};
 	var editor = K.create('#site_reg_agreement', options);
 });

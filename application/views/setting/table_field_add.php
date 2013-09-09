@@ -18,7 +18,7 @@
 </table>
 <!-- <input type="hidden" name="db_table_id" value="<?php echo $db_table_id; ?>"> -->
 <input id='close_this' type='hidden' value='1'>
-<input type="submit" value="提交" />
+<input type="submit" value="送出" />
 </form>
 
 <?php $this->load->view('footer'); ?>
