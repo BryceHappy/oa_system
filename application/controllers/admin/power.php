@@ -16,11 +16,11 @@ class Power extends A_Controller
 	}
 	
 	/**
-	 * 權限列表
+	 * 選單列表
 	 */
 	function index()
 	{
-		$view_datas['title'] = $this->check_power('權限列表');
+		$view_datas['title'] = $this->check_power('選單列表');
 		$view_datas['power_datas'] = $this->m_power->power_datas();
 		$this->load->view($this->file_name . 'list', $view_datas);
 	}
@@ -30,7 +30,7 @@ class Power extends A_Controller
 	 */
 	function add()
 	{
-		$view_datas['title'] = $this->check_power('增加權限');
+		$view_datas['title'] = $this->check_power('增加選單');
 		if(strtolower($_SERVER['REQUEST_METHOD']) == 'post')
 		{
 			$temp_post = $this->input->post();
@@ -51,12 +51,12 @@ class Power extends A_Controller
 	 */
 	function edit()
 	{
-		$this->check_power('權限列表');
+		$this->check_power('選單列表');
 		$edit_id = $this->uri->segment(4);
 		$view_datas['edit_data'] = $this->m_common->get_one('power', array('id' => $edit_id));
 		if($view_datas['edit_data'])
 		{
-			$view_datas['title'] = '編輯權限';
+			$view_datas['title'] = '編輯選單';
 			if(strtolower($_SERVER['REQUEST_METHOD']) == 'post')
 			{
 				$temp_post = $this->input->post();
@@ -72,7 +72,7 @@ class Power extends A_Controller
 				{
 					$post['id'] = $edit_id;
 					$view_datas['edit_data'] = $post;
-					$view_datas['submit_info'] = array('title' => '權限名称已存在');
+					$view_datas['submit_info'] = array('title' => '選單名稱已存在');
 				} else if($action['affected_rows']) {
 					$post['id'] = $edit_id;
 					$post['status'] = $action['status'];
@@ -93,7 +93,7 @@ class Power extends A_Controller
 	 */
 	function del()
 	{
-		$this->check_power('權限列表');
+		$this->check_power('選單列表');
 		$del_data = $this->m_common->get_one('power', array('id' => $this->uri->segment(4)));
 		if($del_data && !$this->m_common->get_one('power', array('pid' => $del_data['id'])) && $this->m_common->delete('power', array('id' => $del_data['id'])))
 		{
@@ -105,11 +105,11 @@ class Power extends A_Controller
 	}
 	
 	/**
-	 * 增加權限组
+	 * 增加群組
 	 */
 	function group_add()
 	{
-		$view_datas['title'] = $this->check_power('增加權限组');
+		$view_datas['title'] = $this->check_power('增加群組');
 		$view_datas['power_datas'] = $this->group_power_datas();
 		if(strtolower($_SERVER['REQUEST_METHOD']) == 'post')
 		{
@@ -121,7 +121,7 @@ class Power extends A_Controller
 			{
 				$view_datas['power_ids'] = $post['power_ids'];
 				unset($post['power_ids']);
-				$view_datas['submit_info'] = array('title' => '權限组名称已存在', 'object_value' => $post);
+				$view_datas['submit_info'] = array('title' => '群組名稱已存在', 'object_value' => $post);
 			} else if($action) {
 				$view_datas['submit_info'] = array('title' => '增加成功');
 			} else {
@@ -132,11 +132,11 @@ class Power extends A_Controller
 	}
 	
 	/**
-	 * 權限组列表
+	 * 群組列表
 	 */
 	function group_index()
 	{
-		$view_datas['title'] = $this->check_power('權限组列表');
+		$view_datas['title'] = $this->check_power('群組列表');
 		$view_datas['group_datas'] = $this->m_power->group_datas();
 		$this->load->view($this->file_name . 'group_list', $view_datas);
 	}
@@ -146,7 +146,7 @@ class Power extends A_Controller
 	 */
 	function group_del()
 	{
-		$this->check_power('權限组列表');
+		$this->check_power('群組列表');
 		if($this->uri->segment(4) == 1)
 		{
 			echo 0;
@@ -166,7 +166,7 @@ class Power extends A_Controller
 	 */
 	function group_edit()
 	{
-		$this->check_power('權限组列表');
+		$this->check_power('群組列表');
 		$edit_id = $this->uri->segment(4);
 		if($edit_id == 1)
 		{

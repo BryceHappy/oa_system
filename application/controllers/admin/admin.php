@@ -24,6 +24,7 @@ class Admin extends A_Controller
 		$view_datas['search_key'] = $search_key = $this->input->get('search_key');
 		$view_datas['status'] = $status = $this->input->get('status') ? $status = $this->input->get('status') : 1;
 		$this->load->helper('my_page');
+		$config['page_query_string'] = true;
 		$config['base_url'] = site_url('admin/admin/index') . '?status=' . $status . ($search_key ? '&search_key=' . $search_key : '');
 		$config['total_rows'] = $this->m_admin->admin_datas(array('get_count' => TRUE, 'search_key' => $search_key, 'status' => $status));
 		$view_datas['pages'] = page_links($config);

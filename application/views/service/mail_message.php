@@ -1,9 +1,8 @@
 <?php $this->load->view('header'); ?>
 
-<form id="dictionary_form" method="post">
+<form id="mail_form" method="post">
 <table width="100%" cellpadding="0" cellspacing="0">
 <tbody>
-
     <tr>
     	<td class="td_right" width="40%" >收件人：</td>
         <td><input class="input_text" type="text" name="who" id="who" /></td>

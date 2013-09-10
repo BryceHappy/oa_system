@@ -12,7 +12,7 @@ $(function (){
 	$('#tabs').show().tabs();
 	$("#list_table").tablesorter({
 		// widgets: ['zebra']
-					widgets        : ['zebra', 'columns'],
+			widgets        : ['zebra', 'columns'],
 			usNumberFormat : false,
 			sortReset      : true,
 			sortRestart    : true
@@ -60,7 +60,10 @@ $(function (){
 	$('#admin_form').submit(function (){
 		if(!$('#username').val()){$('#username').focus(); return false;}
 		if(!$('#password').val()){$('#password').focus(); return false;}
-		if(!$('#power_group_id').val()){show_dialog('請選擇所屬權限組'); return false;}
+		if (!$('#power_group_id').val()) {
+			show_dialog('請選擇所屬權限組');
+			return false;
+		}
 	});
 	$('#pwd_form').submit(function (){
 		if(!$('#old_password').val()){$('#old_password').focus(); return false;}
@@ -73,6 +76,25 @@ $(function (){
 	});
 
 	$('#table_field_form').submit(function (){
+	});
+
+	$('#mail_form').submit(function() {
+		var chk = 0;
+		$('input').each(function(index) {
+			if ($(this).val() == '') {
+				show_dialog('資料不完整');
+				chk = chk + 1;
+			}
+		});
+
+		if (chk > 0) {
+			return false;
+		}
+
+		if (!$('#textarea').val()) {
+			show_dialog('請填寫內文');
+			return false;
+		}
 	});
 	
 

@@ -4,14 +4,14 @@
 <tbody>
     <tr>
     	<td class="td_right">群組名稱：</td>
-        <td><input class="input_text" type="text" name="group_name" id="group_name" maxlength="50" title="不能和现有权限组名称相同" /></td>
+        <td><input class="input_text" type="text" name="group_name" id="group_name" maxlength="50" title="不能與現有群組名稱一樣" /></td>
     </tr>
     <tr>
-    	<td class="td_right">群組名稱：</td>
+    	<td class="td_right">群組描述：</td>
         <td><input class="input_text" type="text" name="group_describe" id="group_describe" maxlength="100" /></td>
     </tr>
     <tr>
-    	<td colspan="2" style="height:40px;">請在下方選擇該組群擁有選單：</td>
+    	<td colspan="2" style="height:40px;">請在下方選擇該群組擁有選單：</td>
     </tr>
     <?php foreach($power_datas as $data): ?>
     <tr>

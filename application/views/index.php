@@ -40,7 +40,7 @@ body{background-color:#c8c8c8; padding:0px;}
                 	<a href="<?php echo site_url($data['power_url']); ?>" target="_blank" class="top_nav"><?php if($data['power_ico']): ?><img src="<?php echo SITE_ADMIN_STATIC, '/', $data['power_ico']; ?>" /><?php endif; ?><?php echo $data['power_name']; ?></a>
                 <?php endif; ?>
             <?php endforeach; ?>
-                <a href="<?php echo site_url(); ?>" target="_blank" class="top_nav"><img src="<?php echo SITE_ADMIN_STATIC; ?>/images/ico_index.png" />站点首页</a>
+                <a href="<?php echo site_url(); ?>" target="_blank" class="top_nav"><img src="<?php echo SITE_ADMIN_STATIC; ?>/images/ico_index.png" />網站首頁</a>
                 <a href="<?php echo site_url('admin/index/logout'); ?>" class="top_nav"><img src="<?php echo SITE_ADMIN_STATIC; ?>/images/ico_exit.png" />退出</a>
             </div>
         </div>

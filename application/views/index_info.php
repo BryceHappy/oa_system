@@ -29,7 +29,7 @@
         <tr>
             <td width="25%">目前用戶</td>
             <td width="25%"><?php echo $user_data['admin_username']; ?></td>
-            <td width="25%">所属权限组</td>
+            <td width="25%">所屬群組</td>
             <td width="25%"><?php echo $user_data['admin_power_name']; ?></td>
         </tr>
         <tr>
