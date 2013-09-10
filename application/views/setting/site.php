@@ -5,6 +5,7 @@
         <li><a href="#tabs-2">網站狀態</a></li>
         <li><a href="#tabs-3">註冊協議</a></li>
         <li><a href="#tabs-4">主題設置</a></li>
+        <li><a href="#tabs-5">協議查看</a></li>
     </ul>
     <div id="tabs-1">
     <form method="post">
@@ -102,6 +103,21 @@
     </table>
     </form>
     </div>
+
+    <div id="tabs-5">
+    <form method="post">
+    <input type="hidden" name="tabs" value="tabs-5" />
+    <table width="100%" cellpadding="0" cellspacing="0">
+    <tbody>
+        <tr>
+            <td class="td_right">主題名稱：</td>
+            <td><?php echo SITE_REG_AGREEMENT; ?></td>
+        </tr>
+    </tbody>
+    </table>
+    </form>
+    </div>
+
 </div>
 <script type="text/javascript" src="<?php echo SITE_RESOURCES; ?>/kindeditor/kindeditor-all-min.js"></script>
 <script type="text/javascript">

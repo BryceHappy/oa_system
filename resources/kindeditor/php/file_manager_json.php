@@ -13,12 +13,12 @@ $php_path = dirname(__FILE__) . '/';
 $php_url = dirname($_SERVER['PHP_SELF']) . '/';
 
 //根目录路径，可以指定绝对路径，比如 /var/www/attached/
-// $root_path = $php_path . '../../../' . str_replace(base_url(), '', SITE_UPLOADS) . '/';
-$root_path = '/uploads';
+$root_path = $php_path . '../../../' . str_replace(base_url(), '', SITE_UPLOADS) . '/';
+// $root_path = '/uploads';
 
 //根目录URL，可以指定绝对路径，比如 http://www.yoursite.com/attached/
-// $root_url = $php_url . '../../../' . str_replace(base_url(), '', SITE_UPLOADS) . '/';
-$root_url = base_url().'/uploads';
+$root_url = $php_url . '../../../' . str_replace(base_url(), '', SITE_UPLOADS) . '/';
+// $root_url = base_url().'/uploads';
 
 //图片扩展名
 $ext_arr = array('gif', 'jpg', 'jpeg', 'png', 'bmp');
@@ -49,6 +49,9 @@ if (empty($_GET['path'])) {
 	$current_dir_path = $_GET['path'];
 	$moveup_dir_path = preg_replace('/(.*?)[^\/]+\/$/', '$1', $current_dir_path);
 }
+
+$current_url = base_url().$current_url;
+
 echo realpath($root_path);
 //排序形式，name or size or type
 $order = empty($_GET['order']) ? 'name' : strtolower($_GET['order']);

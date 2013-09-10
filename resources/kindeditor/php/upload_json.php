@@ -12,10 +12,14 @@ require_once dirname(__FILE__) . '/JSON.php';
 $php_path = dirname(__FILE__) . '/';
 $php_url = dirname($_SERVER['PHP_SELF']) . '/';
 
+
+
 //文件保存目錄路径
 $save_path = $php_path . '../../../' . str_replace(base_url(), '', SITE_UPLOADS) . '/';
+// $root_path = '/uploads';
 //文件保存目錄URL
 $save_url = $php_url . '../../../' . str_replace(base_url(), '', SITE_UPLOADS) . '/';
+// $root_url = base_url().'/uploads';
 //定义允許上傳的文件扩展名
 $ext_arr = array(
 	'image' => array('gif', 'jpg', 'jpeg', 'png', 'bmp'),
@@ -140,7 +144,7 @@ if (empty($_FILES) === false) {
 		alert("上傳文件失败。");
 	}
 	@chmod($file_path, 0644);
-	$file_url = $save_url . $new_file_name;
+	$file_url = base_url().$save_url . $new_file_name;
 
 	header('Content-type: text/html; charset=UTF-8');
 	$json = new Services_JSON();

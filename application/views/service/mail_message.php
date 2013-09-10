@@ -5,7 +5,7 @@
 <tbody>
 
     <tr>
-    	<td class="td_right">收件人：</td>
+    	<td class="td_right" width="40%" >收件人：</td>
         <td><input class="input_text" type="text" name="who" id="who" /></td>
     </tr>
     <tr>
@@ -16,15 +16,9 @@
         <td class="td_right">主旨：</td>
         <td><input class="input_text" type="text" name="subject" id="subject"  /></td>
     </tr>
-        <tr>
+    <tr>
         <td class="td_right">內文：</td>
         <td><textarea class="textarea" id="body" name="body" title="內文"></textarea></td>
-    </tr>
-    </tr>
-        <tr>
-        <td class="td_right">內文2：</td>
-        <td><textarea cols="15" rows="8" id="content" name="content" style="display:none;"></textarea>
-<?php echo $this->ckeditor->replace("content"); ?></td>
     </tr>
     <tr>
     	<td class="td_right"></td>
@@ -39,7 +33,7 @@
 KindEditor.ready(function (K){
 	var options = 
 	{
-		width : '800px',
+		width : '600px',
 		height : '380px',
 		allowFileManager : true,
 		uploadJson : '<?php echo base_url().'common/editor_upload'; ?>',
