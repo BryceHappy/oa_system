@@ -5,28 +5,28 @@ class Welcome extends A_Controller
     function __construct()
     {
         parent::__construct();
-        $this->file_name = 'service/';
-        $this->load->model('service/m_dict');
+    $this->load->library('ckeditor');
+    $this->load->library('ckfinder');
+
     }
 
     function index()
     {
-        $view_datas['title'] = '資料字典';
-        $view_datas['status'] = $status = $this->input->post('status') ? $status = $this->input->post('status') : 1;
-        $view_datas['search_key'] = $search_key = $this->input->post('search_key') ? $search_key = $this->input->post('search_key') : '';
-        
-        $config['base_url'] = base_url().'welcome/index/';
-        $config['total_rows'] = $this->m_dict->dict_type_datas(array('get_count' => TRUE, 'search_key' => $search_key, 'status' => $status));
-        $config['per_page']='20';
-        $config['full_tag_open']='<p>';
-        $config['next_link'] ="下一頁";
-        $config['full_tag_close']='</p>';
-        $config['prev_link'] = "上一頁";
-        $this->pagination->initialize($config);
-// print_r($config);
-        $view_datas['datas'] = $this->m_dict->dict_type_datas(array('limit' => array($config['per_page'],  $this->uri->segment(3)), 'search_key' => $search_key, 'status' => $status));
- 
-        $this->load->view($this->file_name.'dict', $view_datas);
+        $view_datas['title'] = 'ckeditor';
+        $this->ckeditor->basePath = base_url().'resource/ckeditor/';
+        // $this->ckeditor->basePath = SITE_RESOURCES.'/ckeditor/';
+        // $this->ckeditor->config['toolbar'] = array(
+        //                 array( 'Source', '-', 'Bold', 'Italic', 'Underline', '-','Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo','-','NumberedList','BulletedList' )
+        //                                                     );
+        $this->ckeditor->config['toolbar'] = 'Full';
+        $this->ckeditor->config['language'] = 'zh-tw';
+        $this->ckeditor->config['width'] = '800px';
+        $this->ckeditor->config['height'] = '300px';            
+
+        //Add Ckfinder to Ckeditor
+        // $this->ckfinder->SetupCKEditor($this->ckeditor,SITE_RESOURCES.'/ckeditor/');
+        $this->ckfinder->SetupCKEditor($this->ckeditor,'../resources/ckfinder/'); 
+        $this->load->view('ckeditor', $view_datas);
     }
 
 }

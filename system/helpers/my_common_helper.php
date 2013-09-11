@@ -19,10 +19,13 @@ function load_common()
 	$load .= '<link type="text/css" rel="stylesheet" href="' . SITE_COMMON_STATIC . '/common.css" />' . "\n";
 	$load .= '<link type="text/css" rel="stylesheet" href="' . SITE_RESOURCES . '/jquery-ui.css" />' . "\n";
 	$load .= '<script type="text/javascript" src="' . SITE_RESOURCES . '/jquery.js"></script>' . "\n";
+	$load .= '<script type="text/javascript" src="' . SITE_RESOURCES . '/ckeditor/ckeditor.js"></script>' . "\n";
+	$load .= '<script type="text/javascript" src="' . SITE_RESOURCES . '/ckfinder/ckfinder.js"></script>' . "\n";
 	$load .= '<script type="text/javascript" src="' . SITE_RESOURCES . '/jquery-ui.js"></script>' . "\n";
 	$load .= '<script type="text/javascript" src="' . SITE_RESOURCES . '/tablesorter.js"></script>' . "\n";
 	$load .= '<script type="text/javascript" src="' . SITE_RESOURCES . '/tablesorter.widgets.min.js"></script>' . "\n";
 	$load .= '<script type="text/javascript" src="' . SITE_COMMON_STATIC . '/common.js"></script>' . "\n";
+
 	return $load;
 }
 
