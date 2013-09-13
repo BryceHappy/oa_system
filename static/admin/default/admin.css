@@ -65,6 +65,13 @@ a.nav_in{background:url(images/ico_circle_solid.png) left center no-repeat; colo
 #list_table{text-align:center;}
 #list_table td{border-bottom:1px solid #ededed; height:30px;}
 #list_table tr:hover{background-color:#AFD6FF;}
+
+
+#mobile_list{text-align:center;}
+#mobile_list td{border-bottom:1px solid #ededed; height:30px;}
+#mobile_list tr:hover{background-color:#AFD6FF;}
+
+
 .power_left{text-align:left;}
 .power_left a{outline:none; *hide-focus:expression(this.hideFocus=true);}
 .td_power{height:35px; width:100px;}

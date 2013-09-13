@@ -17,6 +17,8 @@ $(function (){
 			sortReset      : true,
 			sortRestart    : true
 	});
+
+
 	$(window).resize(function (){
 		// 後台登錄頁
 		$('#login_body').css({'width':$(window).width(), 'height':$(window).height()});
@@ -74,6 +76,10 @@ $(function (){
 	});
 	$('#dictionary_form').submit(function (){
 	});
+
+	$('#mobile01_form').submit(function (){
+	});
+
 
 	$('#table_field_form').submit(function (){
 	});

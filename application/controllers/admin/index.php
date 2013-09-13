@@ -68,6 +68,48 @@ class Index extends A_Controller
 		$view_datas['user_data'] = $this->m_index->get_session();
 		$this->load->view('index_info', $view_datas);
 	}
+
+	function mobile01()
+	{
+		$view_datas['title'] = '話題';
+		if(strtolower($_SERVER['REQUEST_METHOD']) == 'post')
+		{
+			$post = $this->input->post();
+			foreach ($post['title'] as $key => $value)
+			{
+				$id = $this->m_common->get_one_field('url_table',array('url' => $post['url'][$key]),'id');
+				// print_r($id);
+				if ($id == 1)
+				{
+					$data['title'] = $value;
+					$data['url'] =  $post['url'][$key];
+					$data['note'] = "source: mobile01";
+					$this->m_common->insert('url_table',$data);
+					unset($data);
+				}
+			}
+			$view_datas['excute'] = 0;
+		}
+
+		if(!isset($view_datas['excute']))
+			$view_datas['excute'] = 1;
+
+		$ch = curl_init();
+		$options = array(CURLOPT_URL => 'www.mobile01.com',
+		CURLOPT_HEADER => false,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_USERAGENT => "Google Bot",
+		CURLOPT_FOLLOWLOCATION => true
+		);
+		curl_setopt_array($ch, $options);
+		$output = curl_exec($ch);
+		curl_close($ch);
+		preg_match('/<div[^>]*id="hot-posts"[^>]*>(.*?) <\/div>/si',$output,$match); 
+		$match[0] = str_replace("<a href=\"", "<a href=\"http://www.mobile01.com/", $match[0]);
+		// $match[0] = str_replace('\n', "", $match[0]);
+		$view_datas['content'] = str_replace(" t", " target=_new t",$match[0]);
+		$this->load->view('admin/mobile01', $view_datas);
+	}
 }
 
 /* End of file index.php */
