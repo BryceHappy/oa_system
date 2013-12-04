@@ -29,7 +29,7 @@ class CURL {
 		if ($this->header)
 		{
 			curl_setopt($ch, CURLOPT_HEADER, 1);
-			curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.648.204 Safari/534.16');
+			curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (	; U; Windows NT 6.1; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.648.204 Safari/534.16');
 		}
 //		curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);//「是否截取header的資訊」

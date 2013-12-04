@@ -123,10 +123,10 @@ class M_common extends CI_Model
 		} else {
 			$tmp = "陣列不適用此function";
 		}
+		
 		if(!isset($tmp))
-		{
 			$tmp = 1;
-		}
+
 		return $tmp;
 	}
 
