@@ -49,7 +49,7 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
+$db['default']['username'] = 'bryce';
 $db['default']['password'] = '1qazxsw2';
 $db['default']['database'] = 'oa_system';
 $db['default']['dbdriver'] = 'mysql';

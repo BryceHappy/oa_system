@@ -86,7 +86,7 @@ class CI_Controller {
 		
 		define('SITE_STATIC', SITE_COMMON_STATIC . '/site/' . str_replace(SITE_THEMES . '/', '', SITE_THEME));
 
-		define('INDEX_URL','c_index/index');
+		define('INDEX_URL','login');
 
 	}
 
@@ -113,12 +113,12 @@ class A_Controller extends CI_Controller
 		{
 			if($session['admin_uid'] && $session['admin_username'])
 			{
-				redirect('admin/index/index');
+				redirect('admin');
 			}
 		} else {
 			if(!$session['admin_uid'] || !$session['admin_username'])
 			{
-				redirect('c_index/index');
+				redirect('login');
 			}
 		}
 		

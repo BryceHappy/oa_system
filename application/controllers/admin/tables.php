@@ -15,6 +15,10 @@ class Tables extends A_Controller
         parent::__construct();
         $this->file_name = 'setting/';
         $this->load->model('admin/m_tables');
+
+        // $dir_str = dirname(__FILE__);
+        // $dir_array = explode(''\, string)
+
         $this->dir        = basename(__DIR__);
         $this->controller = strtolower(__CLASS__);
         $this->level_1_url = basename(__DIR__) . '/' . strtolower(__CLASS__) . '/get_table';
@@ -23,6 +27,10 @@ class Tables extends A_Controller
     
     function get_table()
     {
+        $dir_str = dirname(__FILE__);
+        $dir_array = explode("\/", $dir_str);
+        print_r($dir_array);
+        exit;
 
         $path       = $this->dir . '/' . $this->controller . '/' . __FUNCTION__;
         

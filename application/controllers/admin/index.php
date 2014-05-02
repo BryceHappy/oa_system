@@ -41,7 +41,7 @@ class Index extends A_Controller
 				$post['password'] = $this->input->post('password');
 				$view_datas['submit_info'] = array('title' => '該用戶權限已關閉', 'object_value' => $post);
 			} else if($action) {
-				redirect('admin/index/index');
+				redirect('admin');
 			} else {
 				$post['password'] = $this->input->post('password');
 				$view_datas['submit_info'] = array('title' => '使用者或密碼錯誤', 'object_value' => $post);
@@ -56,7 +56,7 @@ class Index extends A_Controller
 	function logout()
 	{
 		$this->m_index->logout();
-		redirect('c_index/index');
+		redirect('login');
 	}
 	
 	/**

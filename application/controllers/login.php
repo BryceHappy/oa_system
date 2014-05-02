@@ -6,7 +6,7 @@
  * @link        http://www.lensic.cn/
  * @copyright   Copyright (c) 2013 - , lensic [mhy].
  */
-class C_index extends A_Controller
+class Login extends A_Controller
 {
 	function __construct()
 	{

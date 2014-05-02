@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "c_index";
+$route['default_controller'] = "login";
 // $route['admin'] = "admin";
 // $route['client'] = "client";
 $route['404_override'] = '';
